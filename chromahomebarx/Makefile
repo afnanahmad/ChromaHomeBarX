@@ -5,6 +5,7 @@ ChromaHomeBarX_FILES = ACXRootListController.m
 ChromaHomeBarX_INSTALL_PATH = /Library/PreferenceBundles
 ChromaHomeBarX_FRAMEWORKS = UIKit
 ChromaHomeBarX_PRIVATE_FRAMEWORKS = Preferences
+ChromaHomeBarX_LIBRARIES = colorpicker 
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 
