@@ -48,4 +48,11 @@
 
 }
 
+-(void)goToPaypal{
+  NSString *urlString = @"https://www.paypal.me/AfnanAhmad";
+  if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]]){
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+  }
+}
+
 @end

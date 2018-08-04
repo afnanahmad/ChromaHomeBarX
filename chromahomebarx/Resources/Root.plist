@@ -175,6 +175,25 @@
       <key>label</key>     	              <string>@rockafnan</string>
     </dict>
 
+		<!-- Just a space in the settings -->
+    <dict>
+      <key>cell</key>                    <string>PSGroupCell</string>
+			<key>label</key>                  <string>Feeling generious:</string>
+    </dict>
+
+
+		<dict>
+      <key>action</key>                   <string>goToPaypal</string>
+      <key>cell</key>                     <string>PSButtonCell</string>
+      <key>icon</key>                     <string>paypal.png</string>
+      <key>label</key>     	              <string>Buy me a coffee!</string>
+    </dict>
+
+		<dict>
+      <key>cell</key>                    <string>PSGroupCell</string>
+			<key>footerText</key> 						<string>Afnan Ahmad • 2018 / ChromaHomeBarX - v0.1</string>
+    </dict>
+
 	</array>
 	<key>title</key>
 	<string>ChromaHomeBarX</string>
