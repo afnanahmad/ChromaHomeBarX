@@ -1,0 +1,9 @@
+Package: com.afnan.chromahomebarx
+Name: ChromaHomeBarX
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Chroma Colors on iPhone X Home Bar.
+Maintainer: Afnan Ahmad <afnanahmaddd@gmail.com>
+Author: Afnan Ahmad <afnanahmaddd@gmail.com>
+Section: Tweaks
