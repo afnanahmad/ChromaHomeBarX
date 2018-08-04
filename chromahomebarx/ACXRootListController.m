@@ -1,5 +1,5 @@
 #include "ACXRootListController.h"
-#define chromahomebarxPrefs @"/var/mobile/Library/Preferences/com.afnan.chromahomebarxpref.plist"
+#define chromahomebarxPrefs @"/var/mobile/Library/Preferences/com.afnanahmad.chromahomebarxpref.plist"
 
 @implementation ACXRootListController
 

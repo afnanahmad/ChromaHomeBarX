@@ -11,11 +11,11 @@
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
-			<key>PostNotification</key>       <string>com.afnan.chromahomebarx.settingschanged</string>
+			<key>PostNotification</key>       <string>com.afnanahmad.chromahomebarx.settingschanged</string>
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.afnan.chromahomebarxpref</string>
+			<string>com.afnanahmad.chromahomebarxpref</string>
 			<key>key</key>
 			<string>enabled</string>
 			<key>label</key>
@@ -26,9 +26,9 @@
 			<string>wave</string>
 			<key>cell</key>
 			<string>PSLinkListCell</string>
-			<key>PostNotification</key>       <string>com.afnan.chromahomebarx.settingschanged</string>
+			<key>PostNotification</key>       <string>com.afnanahmad.chromahomebarx.settingschanged</string>
 			<key>defaults</key>
-			<string>com.afnan.chromahomebarxpref</string>
+			<string>com.afnanahmad.chromahomebarxpref</string>
 			<key>detail</key>
 			<string>PSListItemsController</string>
 			<key>key</key>
@@ -66,7 +66,7 @@
 			<key>libcolorpicker</key>
 			<dict>
 				<key>defaults</key>
-				<string>com.afnan.chromahomebarxpref</string>
+				<string>com.afnanahmad.chromahomebarxpref</string>
 				<key>key</key>
 				<string>fadeColor1</string>
 				<key>fallback</key>
@@ -86,7 +86,7 @@
 			<key>libcolorpicker</key>
 			<dict>
 				<key>defaults</key>
-				<string>com.afnan.chromahomebarxpref</string>
+				<string>com.afnanahmad.chromahomebarxpref</string>
 				<key>key</key>
 				<string>fadeColor2</string>
 				<key>fallback</key>
@@ -113,7 +113,7 @@
 			<key>libcolorpicker</key>
 			<dict>
 				<key>defaults</key>
-				<string>com.afnan.chromahomebarxpref</string>
+				<string>com.afnanahmad.chromahomebarxpref</string>
 				<key>key</key>
 				<string>breathingColor</string>
 				<key>fallback</key>
@@ -138,7 +138,7 @@
 			<key>libcolorpicker</key>
 			<dict>
 				<key>defaults</key>
-				<string>com.afnan.chromahomebarxpref</string>
+				<string>com.afnanahmad.chromahomebarxpref</string>
 				<key>key</key>
 				<string>staticColor</string>
 				<key>fallback</key>

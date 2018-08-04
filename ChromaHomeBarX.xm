@@ -1,6 +1,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "libcolorpicker.h"
-#define chromahomebarxPrefs @"/var/mobile/Library/Preferences/com.afnan.chromahomebarxpref.plist"
+#define chromahomebarxPrefs @"/var/mobile/Library/Preferences/com.afnanahmad.chromahomebarxpref.plist"
 
 static NSUInteger totalColors = 2;
 
@@ -25,10 +25,32 @@ void refreshPrefs() {
   settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[chromahomebarxPrefs stringByExpandingTildeInPath]];
   if([settings objectForKey:@"enabled"])enabled = [[settings objectForKey:@"enabled"] boolValue];
   if([settings objectForKey:@"style"])style = [[settings objectForKey:@"style"] stringValue];
-  if([settings objectForKey:@"fadeColor1"])firstColor = LCPParseColorString([[settings objectForKey:@"fadeColor1"] stringValue], fade1FallbackHex);
-  if([settings objectForKey:@"fadeColor2"])secondColor = LCPParseColorString([[settings objectForKey:@"fadeColor2"] stringValue], fade2FallbackHex);
-  if([settings objectForKey:@"breathingColor"])breathingColor = LCPParseColorString([[settings objectForKey:@"breathingColor"] stringValue], breathingFallbackHex);
-  if([settings objectForKey:@"staticColor"])staticColor = LCPParseColorString([[settings objectForKey:@"staticColor"] stringValue], staticFallbackHex);
+  if([settings objectForKey:@"fadeColor1"]){
+    firstColor = LCPParseColorString([[settings objectForKey:@"fadeColor1"] stringValue], fade1FallbackHex);
+  } else
+  {
+    firstColor = LCPParseColorString(fade1FallbackHex, fade1FallbackHex);
+  }
+
+  if([settings objectForKey:@"fadeColor2"]){
+    secondColor = LCPParseColorString([[settings objectForKey:@"fadeColor2"] stringValue], fade2FallbackHex);
+  } else
+  {
+    secondColor = LCPParseColorString(fade2FallbackHex, fade2FallbackHex);
+  }
+
+  if([settings objectForKey:@"breathingColor"]){breathingColor = LCPParseColorString([[settings objectForKey:@"breathingColor"] stringValue], breathingFallbackHex);
+
+} else
+{
+  breathingColor = LCPParseColorString(breathingFallbackHex, breathingFallbackHex);
+}
+
+if([settings objectForKey:@"staticColor"]){staticColor = LCPParseColorString([[settings objectForKey:@"staticColor"] stringValue], staticFallbackHex);
+} else
+{
+  staticColor = LCPParseColorString(staticFallbackHex, staticFallbackHex);
+}
 
 
 }
@@ -233,13 +255,13 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
 /*%hook SpringBoard
 -(void) applicationDidFinishLaunching:(id)arg {
-  %orig(arg);
-  UIAlertView *lookWhatWorks = [[UIAlertView alloc] initWithTitle:@"HomeBar Color Tweak"
-  message:[@"Loaded!!\nFucking Awesome: " stringByAppendingString:style]
-  delegate:self
-  cancelButtonTitle:@"OK"
-  otherButtonTitles:nil];
-  [lookWhatWorks show];
+%orig(arg);
+UIAlertView *lookWhatWorks = [[UIAlertView alloc] initWithTitle:@"HomeBar Color Tweak"
+message:[@"Loaded!!\nFucking Awesome: " stringByAppendingString:style]
+delegate:self
+cancelButtonTitle:@"OK"
+otherButtonTitles:nil];
+[lookWhatWorks show];
 }
 %end*/
 
@@ -364,7 +386,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 %ctor {
   @autoreleasepool {
     settings = [[NSMutableDictionary alloc] initWithContentsOfFile:[chromahomebarxPrefs stringByExpandingTildeInPath]];
-    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback) PreferencesChangedCallback, CFSTR("com.afnan.chromahomebarx.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback) PreferencesChangedCallback, CFSTR("com.afnanahmad.chromahomebarx.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
     refreshPrefs();
   }
 }
