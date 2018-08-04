@@ -7,8 +7,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>ChromaHomeBarX First Page</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -16,11 +14,11 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>com.afnan.homebarxpref</string>
+			<string>com.afnan.chromahomebarxpref</string>
 			<key>key</key>
-			<string>AwesomeSwitch1</string>
+			<string>Enable</string>
 			<key>label</key>
-			<string>Awesome Switch 1</string>
+			<string>Enable</string>
 		</dict>
 	</array>
 	<key>title</key>
