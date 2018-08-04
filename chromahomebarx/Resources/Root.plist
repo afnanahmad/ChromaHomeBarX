@@ -55,7 +55,7 @@
 
 		<dict>
 		  <key>cell</key>                   <string>PSGroupCell</string>
-		  <key>label</key>                  <string>Settings for Fade Style</string>
+		  <key>label</key>                  <string>Fade Style Settings</string>
 		</dict>
 
 		<dict>
@@ -102,7 +102,7 @@
 
 		<dict>
 		  <key>cell</key>                   <string>PSGroupCell</string>
-		  <key>label</key>                  <string>Settings for Breathing Style</string>
+		  <key>label</key>                  <string>Breathing Style Settings</string>
 		</dict>
 
 		<dict>
@@ -127,7 +127,7 @@
 
 		<dict>
 		  <key>cell</key>                   <string>PSGroupCell</string>
-		  <key>label</key>                  <string>Settings for Static Style</string>
+		  <key>label</key>                  <string>Static Style Settings</string>
 		</dict>
 
 		<dict>
@@ -159,6 +159,20 @@
       <key>label</key>                   <string>Respring</string>
       <key>action</key>                  <string>respring</string>
 
+    </dict>
+
+		<!-- Just a space in the settings -->
+    <dict>
+      <key>cell</key>                    <string>PSGroupCell</string>
+			<key>label</key>                  <string>Developed by:</string>
+    </dict>
+
+
+		<dict>
+      <key>action</key>                   <string>goToTwitter</string>
+      <key>cell</key>                     <string>PSButtonCell</string>
+      <key>icon</key>                     <string>twitter.png</string>
+      <key>label</key>     	              <string>@rockafnan</string>
     </dict>
 
 	</array>
