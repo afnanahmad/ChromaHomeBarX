@@ -3,7 +3,7 @@ Name: ChromaHomeBarX
 Depends: mobilesubstrate
 Version: 0.1
 Architecture: iphoneos-arm
-Description: Chroma Colors on iPhone X Home Bar.
+Description: Razer Chroma insprird HomeBar coloring tweak for iPhone X, also works with LittleX.
 Maintainer: Afnan Ahmad <afnanahmaddd@gmail.com>
 Author: Afnan Ahmad <afnanahmaddd@gmail.com>
 Section: Tweaks
