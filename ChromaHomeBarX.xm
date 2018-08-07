@@ -13,7 +13,14 @@ UIColor *secondColor = [UIColor redColor];
 
 UIColor *breathingColor = [UIColor blueColor];
 UIColor *staticColor = [UIColor blueColor];
-
+CGFloat waveSpeed = 0.05;
+CGFloat waveOpacity = 1;
+CGFloat specturmSpeed = 0.1;
+CGFloat specturmOpacity = 1;
+CGFloat homeBarOpacity = 1;
+CGFloat breathingSpeed = 10.0;
+CGFloat fadeSpeed = 10.0;
+NSString *waveDirection = @"l2r";
 
 void refreshPrefs() {
     NSString *fade1FallbackHex = @"#F62459";
@@ -51,6 +58,15 @@ void refreshPrefs() {
     {
         staticColor = LCPParseColorString(staticFallbackHex, staticFallbackHex);
     }
+
+    if([settings objectForKey:@"waveAnimationSpeed"])waveSpeed = [[settings objectForKey:@"waveAnimationSpeed"] floatValue];
+    if([settings objectForKey:@"waveOpacity"])waveOpacity = [[settings objectForKey:@"waveOpacity"] floatValue];
+    if([settings objectForKey:@"specturmAnimationSpeed"])specturmSpeed = [[settings objectForKey:@"specturmAnimationSpeed"] floatValue];
+    if([settings objectForKey:@"specturmOpacity"])specturmOpacity = [[settings objectForKey:@"specturmOpacity"] floatValue];
+    if([settings objectForKey:@"homeBarOpacity"])homeBarOpacity = [[settings objectForKey:@"homeBarOpacity"] floatValue];
+    if([settings objectForKey:@"breathingSpeed"])breathingSpeed = [[settings objectForKey:@"breathingSpeed"] floatValue];
+    if([settings objectForKey:@"fadeSpeed"])fadeSpeed = [[settings objectForKey:@"fadeSpeed"] floatValue];
+    if([settings objectForKey:@"waveDirection"])waveDirection = [[settings objectForKey:@"waveDirection"] stringValue];
 }
 
 static void PreferencesChangedCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
@@ -78,6 +94,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 @property (nonatomic, assign) NSUInteger colorNum;
 @property (nonatomic, assign) NSUInteger currentHueNum;
 @property (nonatomic, strong) NSMutableArray *colors;
+@property (nonatomic, strong) NSTimer *timer;
 
 - (void)animateView;
 - (void)specturmView;
@@ -116,7 +133,6 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
         // Create colors using hues in +5 increments
         self.colors = [NSMutableArray array];
         for (CGFloat hue = 0; hue <= 360; hue += 1) {
-
             UIColor *color;
             color = [UIColor colorWithHue:1.0 * hue / 360.0
                                saturation:1.0
@@ -156,7 +172,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 - (void)specturmView {
     __weak ColorPillView *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.1
+        [UIView animateWithDuration:specturmSpeed
                          animations:^{
                              weakSelf.layer.backgroundColor = [[UIColor alloc] initWithHue:weakSelf.currentHueNum/360.0f saturation:1 brightness:1 alpha:1].CGColor;
                          }
@@ -176,19 +192,22 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 }
 
 - (void)waveView {
+  /*
     // Move the last color in the array to the front
     // shifting all the other colors.
     CAGradientLayer *layer = (id)[self layer];
     NSMutableArray *mutableArray = self.colors;
-    id lastColor = [mutableArray lastObject];
-    [mutableArray removeLastObject];
-    [mutableArray insertObject:lastColor atIndex:0];
-    NSArray *shiftedColors = [NSArray arrayWithArray:mutableArray];
+    //id lastColor = [mutableArray lastObject];
+    //[mutableArray removeLastObject];
+    //[mutableArray insertObject:lastColor atIndex:0];
+    //NSArray *shiftedColors = [NSArray arrayWithArray:mutableArray];
 
-    NSArray *itemsForView = [shiftedColors subarrayWithRange: NSMakeRange( 0, shiftedColors.count / 6 )];
+    //NSArray *itemsForView = [shiftedColors subarrayWithRange: NSMakeRange( 0, shiftedColors.count / 6 )];
+    NSArray *itemsForView = [mutableArray subarrayWithRange: NSMakeRange( 0, mutableArray.count / 6 )];
 
     // Update the colors on the model layer
     [layer setColors:itemsForView];
+    [layer setDrawsAsynchronously:YES];
 
     // Create an animation to slowly move the gradient left to right.
     CABasicAnimation *animation;
@@ -198,7 +217,36 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
     [animation setRemovedOnCompletion:YES];
     [animation setFillMode:kCAFillModeForwards];
     [animation setDelegate:self];
+    [layer removeAllAnimations];
     [layer addAnimation:animation forKey:@"animateGradient"];
+    */
+
+    self.timer = [NSTimer timerWithTimeInterval:waveSpeed repeats:YES block:^(NSTimer * _Nonnull timer) {
+        //__weak UIView *weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CAGradientLayer *layer = (id)[self layer];
+            NSMutableArray *mutableArray = self.colors;
+            if ([waveDirection isEqualToString:@"l2r"]) {
+              id lastColor = [mutableArray lastObject];
+              [mutableArray removeLastObject];
+              [mutableArray insertObject:lastColor atIndex:0];
+            } else if ([waveDirection isEqualToString:@"r2l"]) {
+              id firstColor = [mutableArray firstObject];
+              [mutableArray removeObjectAtIndex:0];
+              [mutableArray addObject:firstColor];
+            }
+
+
+            NSArray *itemsForView = [mutableArray subarrayWithRange: NSMakeRange( 0, mutableArray.count / 6 )];
+
+            // Update the colors on the model layer
+            [layer setColors:itemsForView];
+            [layer setDrawsAsynchronously:YES];
+        });
+    }];
+
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    [self.timer fire];
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
@@ -215,7 +263,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
     __weak ColorPillView *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:10.0
+        [UIView animateWithDuration:breathingSpeed
                          animations:^{
                              weakSelf.layer.backgroundColor = newColor.CGColor;
                          }
@@ -235,7 +283,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
     __weak ColorPillView *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:10.0
+        [UIView animateWithDuration:fadeSpeed
                          animations:^{
                              weakSelf.layer.backgroundColor = newColor.CGColor;
                          }
@@ -290,6 +338,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
                 [colorView waveView];
             } else if ([style isEqual:@"Spectrum"]) {
                 [colorView specturmView];
+
             } else if ([style isEqual:@"Fade"]) {
                 [colorView fadeView];
             } else if ([style isEqual:@"Breathing"]) {
@@ -298,6 +347,7 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
                 [colorView staticView];
             }
 
+            self.alpha = homeBarOpacity;
         }
 
         CGRect frame = colorView.frame;
@@ -373,6 +423,8 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
             } else if ([style isEqual:@"Static"]) {
                 [colorView staticView];
             }
+
+            self.alpha = homeBarOpacity;
         }
     }
 }

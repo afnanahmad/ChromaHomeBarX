@@ -23,7 +23,7 @@
 		</dict>
 		<dict>
 			<key>default</key>
-			<string>wave</string>
+			<string>Wave</string>
 			<key>cell</key>
 			<string>PSLinkListCell</string>
 			<key>PostNotification</key>       <string>com.afnanahmad.chromahomebarx.settingschanged</string>
@@ -52,6 +52,129 @@
 				<string>Static</string>
 			</array>
 		</dict>
+
+
+		<dict>
+		  <key>cell</key>                   <string>PSGroupCell</string>
+		  <key>label</key>                  <string>General Settings</string>
+		</dict>
+
+		<dict>
+			<key>label</key>
+			<string>Opacity</string>
+		</dict>
+
+		<dict>
+			<key>showValue</key>
+			<true/>
+			<key>max</key>
+			<real>1</real>
+			<key>min</key>
+			<real>0.01</real>
+			<key>PostNotification</key>
+			<string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>1</real>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>key</key>
+			<string>homeBarOpacity</string>
+		</dict>
+
+		<dict>
+		  <key>cell</key>                   <string>PSGroupCell</string>
+		  <key>label</key>                  <string>Wave Settings</string>
+		</dict>
+
+		<dict>
+			<key>default</key>
+			<string>l2r</string>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>PostNotification</key>       <string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>key</key>
+			<string>waveDirection</string>
+			<key>label</key>
+			<string>Animation Direction</string>
+			<key>validTitles</key>
+			<array>
+				<string>Left to Right</string>
+				<string>Right to Left</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>l2r</string>
+				<string>r2l</string>
+			</array>
+		</dict>
+
+		<dict>
+			<key>label</key>
+			<string>Animation Interval</string>
+		</dict>
+
+		<dict>
+			<key>showValue</key>
+			<true/>
+			<key>max</key>
+			<real>0.5</real>
+			<key>min</key>
+			<real>0.05</real>
+			<key>PostNotification</key>
+			<string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>5</real>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>45</integer>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>key</key>
+			<string>waveAnimationSpeed</string>
+		</dict>
+
+		<dict>
+		  <key>cell</key>                   <string>PSGroupCell</string>
+		  <key>label</key>                  <string>Spectrum Settings</string>
+		</dict>
+
+		<dict>
+			<key>label</key>
+			<string>Animation Interval</string>
+		</dict>
+
+		<dict>
+			<key>showValue</key>
+			<true/>
+			<key>max</key>
+			<real>0.2</real>
+			<key>min</key>
+			<real>0.01</real>
+			<key>PostNotification</key>
+			<string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>0.1</real>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>19</integer>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>key</key>
+			<string>specturmAnimationSpeed</string>
+		</dict>
+
 
 		<dict>
 		  <key>cell</key>                   <string>PSGroupCell</string>
@@ -98,6 +221,34 @@
 			<string>Fade Color 2</string>
 		</dict>
 
+		<dict>
+			<key>label</key>
+			<string>Animation Interval</string>
+		</dict>
+
+		<dict>
+			<key>showValue</key>
+			<true/>
+			<key>max</key>
+			<real>20</real>
+			<key>min</key>
+			<real>1</real>
+			<key>PostNotification</key>
+			<string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>10</real>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>19</integer>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>key</key>
+			<string>fadeSpeed</string>
+		</dict>
+
 
 
 		<dict>
@@ -123,6 +274,34 @@
 			</dict>
 			<key>label</key>
 			<string>Breathing Color</string>
+		</dict>
+
+		<dict>
+			<key>label</key>
+			<string>Animation Interval</string>
+		</dict>
+
+		<dict>
+			<key>showValue</key>
+			<true/>
+			<key>max</key>
+			<real>20</real>
+			<key>min</key>
+			<real>1</real>
+			<key>PostNotification</key>
+			<string>com.afnanahmad.chromahomebarx.settingschanged</string>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>5</real>
+			<key>isSegmented</key>
+			<true/>
+			<key>segmentCount</key>
+			<integer>19</integer>
+			<key>defaults</key>
+			<string>com.afnanahmad.chromahomebarxpref</string>
+			<key>key</key>
+			<string>breathingSpeed</string>
 		</dict>
 
 		<dict>
@@ -164,6 +343,20 @@
 		<!-- Just a space in the settings -->
     <dict>
       <key>cell</key>                    <string>PSGroupCell</string>
+			<key>label</key>                  <string>Works with HomeGesture on devices without native HomeBar:</string>
+    </dict>
+
+
+		<dict>
+      <key>action</key>                   <string>goToHomeGesture</string>
+      <key>cell</key>                     <string>PSButtonCell</string>
+      <key>icon</key>                     <string>homeGesture.png</string>
+      <key>label</key>     	              <string>Download HomeGesture</string>
+    </dict>
+
+		<!-- Just a space in the settings -->
+    <dict>
+      <key>cell</key>                    <string>PSGroupCell</string>
 			<key>label</key>                  <string>Developed by:</string>
     </dict>
 
@@ -191,7 +384,7 @@
 
 		<dict>
       <key>cell</key>                    <string>PSGroupCell</string>
-			<key>footerText</key> 						<string>Afnan Ahmad • 2018 / ChromaHomeBarX - v0.1</string>
+			<key>footerText</key> 						<string>Afnan Ahmad • 2018 / ChromaHomeBarX - v0.2</string>
     </dict>
 
 	</array>

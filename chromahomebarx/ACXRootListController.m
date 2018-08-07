@@ -55,4 +55,11 @@
   }
 }
 
+-(void)goToHomeGesture{
+  NSString *urlString = @"https://repo.packix.com/package/com.vitataf.homegesture/";
+  if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]]){
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+  }
+}
+
 @end

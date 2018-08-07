@@ -1,7 +1,7 @@
 Package: com.afnanahmad.chromahomebarx
 Name: ChromaHomeBarX
 Depends: mobilesubstrate
-Version: 0.1
+Version: 0.2
 Architecture: iphoneos-arm
 Description: Razer Chroma insprird HomeBar coloring tweak for iPhone X, also works with LittleX.
 Maintainer: Afnan Ahmad <afnanahmaddd@gmail.com>
