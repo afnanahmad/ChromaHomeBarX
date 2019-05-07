@@ -327,9 +327,10 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
         UIView *colorView = [self viewWithTag:tag];
         if (!colorView) {
             refreshPrefs();
+            [self setClipsToBounds:YES];
+
             ColorPillView *colorView = [[ColorPillView alloc] initWithFrame:self.bounds];
             colorView.tag = 115;
-            colorView.layer.cornerRadius = self.bounds.size.height / 2;
             //colorView.backgroundColor = [UIColor redColor];
             colorView.colorNum = 0;
             [self addSubview:colorView];
@@ -348,12 +349,25 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
             }
 
             self.alpha = homeBarOpacity;
+
+            [colorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [self addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:@"H:|-0-[colorView]-0-|"
+                                   options:NSLayoutFormatDirectionLeadingToTrailing
+                                   metrics:nil
+                                   views:NSDictionaryOfVariableBindings(colorView)]];
+            [self addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:@"V:|-0-[colorView]-0-|"
+                                   options:NSLayoutFormatDirectionLeadingToTrailing
+                                   metrics:nil
+                                   views:NSDictionaryOfVariableBindings(colorView)]];
         }
 
-        CGRect frame = colorView.frame;
-        frame.size.height = self.frame.size.height;
-        frame.size.width = self.frame.size.width;
-        colorView.frame = frame;
+        // CGRect frame = colorView.frame;
+        // frame.size.height = self.frame.size.height;
+        // frame.size.width = self.frame.size.width;
+        colorView.layer.cornerRadius = self.frame.size.height / 2;
+        // colorView.frame = frame;
     }
 
 }
@@ -426,6 +440,12 @@ static void PreferencesChangedCallback(CFNotificationCenterRef center, void *obs
 
             self.alpha = homeBarOpacity;
         }
+
+        CGRect frame = colorView.frame;
+        frame.size.height = self.frame.size.height;
+        frame.size.width = self.frame.size.width;
+        colorView.layer.cornerRadius = self.frame.size.height / 2;
+        colorView.frame = frame;
     }
 }
 
